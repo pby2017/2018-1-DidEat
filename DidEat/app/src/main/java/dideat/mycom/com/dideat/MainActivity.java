@@ -1,15 +1,17 @@
 package dideat.mycom.com.dideat;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MainView {
+
+    private Contract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        mPresenter = new Presenter(MainActivity.this);
+        mPresenter.setView(this);
     }
 }
