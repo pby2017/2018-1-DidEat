@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="dideat.mycom.com.dideat.MainActivity">
+    tools:context="dideat.mycom.com.dideat.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,18 +26,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/mMoveToWriteButton"
+                android:id="@+id/mAddButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/move_to_write_button" />
+                android:text="@string/main_add" />
 
             <Button
-                android:id="@+id/mMoveToShowButton"
+                android:id="@+id/mListButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/move_to_show_button" />
+                android:text="@string/main_list" />
         </LinearLayout>
 
         <LinearLayout

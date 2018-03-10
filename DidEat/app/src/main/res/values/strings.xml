@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DidEat</string>
-    <string name="move_to_write_button">기록하기</string>
-    <string name="move_to_show_button">기록확인</string>
-    <string name="title_activity_write">WriteActivity</string>
+    <string name="main_add">기록하기</string>
+    <string name="main_list">기록확인</string>
+    <string name="successfully_saved_list_message">MEAL saved</string>
 </resources>
