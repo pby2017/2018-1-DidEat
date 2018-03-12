@@ -1,4 +1,4 @@
-package dideat.mycom.com.dideat;
+package dideat.mycom.com.dideat.data;
 
 public class Model {
 
