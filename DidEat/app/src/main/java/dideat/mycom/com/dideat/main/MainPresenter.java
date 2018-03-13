@@ -3,7 +3,7 @@ package dideat.mycom.com.dideat.main;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
-import dideat.mycom.com.dideat.addeditlist.AddEditListActivity;
+import dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -22,7 +22,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void result(int requestCode, int resultCode) {
-        if (AddEditListActivity.REQUEST_ADD_LIST == requestCode && Activity.RESULT_OK == resultCode) {
+        if (AddEditMealActivity.REQUEST_ADD_MEAL == requestCode && Activity.RESULT_OK == resultCode) {
             mMainView.showSuccessfullySavedMessage();
         }
     }

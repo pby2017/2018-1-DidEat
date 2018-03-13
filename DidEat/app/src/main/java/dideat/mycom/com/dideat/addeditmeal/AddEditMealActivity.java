@@ -1,7 +1,8 @@
-package dideat.mycom.com.dideat.addeditlist;
+package dideat.mycom.com.dideat.addeditmeal;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dideat.mycom.com.dideat.R;
-import dideat.mycom.com.dideat.main.MainActivity;
-import dideat.mycom.com.dideat.main.MainPresenter;
 
-public class AddEditListActivity extends AppCompatActivity implements AddEditListContract.View {
+public class AddEditMealActivity extends AppCompatActivity implements AddEditMealContract.View {
 
-    public static final int REQUEST_ADD_LIST = 1;
+    public static final int REQUEST_ADD_MEAL = 1;
 
-    private AddEditListPresenter mAddEditListPresenter;
+    private AddEditMealPresenter mAddEditMealPresenter;
 
     private EditText mDateEditText;
     private EditText mTimeEditText;
@@ -31,15 +30,15 @@ public class AddEditListActivity extends AppCompatActivity implements AddEditLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_list);
+        setContentView(R.layout.activity_add_edit_meal);
 
-        mAddEditListPresenter = new AddEditListPresenter(AddEditListActivity.this);
+        mAddEditMealPresenter = new AddEditMealPresenter(AddEditMealActivity.this);
 
         setupViewContent();
     }
 
     @Override
-    public void setPresenter(AddEditListContract.Presenter presenter) {
+    public void setPresenter(AddEditMealContract.Presenter presenter) {
 
     }
 
@@ -55,13 +54,13 @@ public class AddEditListActivity extends AppCompatActivity implements AddEditLis
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!contentIsEmpty()) {
-                    Intent returnIntent = new Intent();
-                    setResult(Activity.RESULT_OK, returnIntent);
-                    finish();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Fill in the blank.", Toast.LENGTH_SHORT).show();
-                }
+                mAddEditMealPresenter.saveMeal(mDateEditText.getText().toString(),
+                        mTimeEditText.getText().toString(),mPlaceEditText.getText().toString(),
+                        mFoodEditText.getText().toString(),mPriceEditText.getText().toString());
+
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
             }
         });
 
@@ -73,14 +72,12 @@ public class AddEditListActivity extends AppCompatActivity implements AddEditLis
         });
     }
 
-    private boolean contentIsEmpty() {
-        if (mDateEditText.getText().length() == 0 ||
-                mTimeEditText.getText().length() == 0 ||
-                mPlaceEditText.getText().length() == 0 ||
-                mFoodEditText.getText().length() == 0 ||
-                mPriceEditText.getText().length() == 0) {
-            return false;
-        }
-        return true;
+    @Override
+    public void showEmptyMealError() {
+        Toast.makeText(getApplicationContext(), getString(R.string.empty_meal_message), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMealsList() {
     }
 }

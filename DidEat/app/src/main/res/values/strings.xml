@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DidEat</string>
     <string name="main_add">기록하기</string>
-    <string name="main_list">기록확인</string>
-    <string name="successfully_saved_list_message">MEAL saved</string>
+    <string name="main_meal">기록확인</string>
+    <string name="successfully_saved_meal_message">MEAL saved</string>
+    <string name="empty_meal_message">MEAL cannot be empty</string>
 </resources>

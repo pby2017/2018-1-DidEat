@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import dideat.mycom.com.dideat.R;
-import dideat.mycom.com.dideat.addeditlist.AddEditListActivity;
+import dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     private MainPresenter mMainPresenter;
 
     private Button mAddButton;
-    private Button mListButton;
+    private Button mMealButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +34,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     void setupViewContent() {
         mAddButton = (Button) findViewById(R.id.mAddButton);
-        mListButton = (Button) findViewById(R.id.mListButton);
+        mMealButton = (Button) findViewById(R.id.mMealButton);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAddList();
+                showAddMeal();
             }
         });
 
-        mListButton.setOnClickListener(new View.OnClickListener() {
+        mMealButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showList();
+                showMeal();
             }
         });
     }
 
-    private void showAddList() {
-        Intent intent = new Intent(MainActivity.this, AddEditListActivity.class);
-        startActivityForResult(intent, AddEditListActivity.REQUEST_ADD_LIST);
+    private void showAddMeal() {
+        Intent intent = new Intent(MainActivity.this, AddEditMealActivity.class);
+        startActivityForResult(intent, AddEditMealActivity.REQUEST_ADD_MEAL);
     }
 
     @Override
@@ -61,13 +61,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mMainPresenter.result(requestCode, resultCode);
     }
 
-    private void showList() {
+    private void showMeal() {
 
     }
 
     @Override
     public void showSuccessfullySavedMessage() {
-        showMessage(getString(R.string.successfully_saved_list_message));
+        showMessage(getString(R.string.successfully_saved_meal_message));
     }
 
     private void showMessage(String message){

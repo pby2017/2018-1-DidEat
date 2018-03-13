@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="dideat.mycom.com.dideat.addeditlist.AddEditListActivity">
+    tools:context="dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -33,11 +33,11 @@
                 android:text="@string/main_add" />
 
             <Button
-                android:id="@+id/mListButton"
+                android:id="@+id/mMealButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/main_list" />
+                android:text="@string/main_meal" />
         </LinearLayout>
 
         <LinearLayout
