@@ -1,5 +1,7 @@
 package dideat.mycom.com.dideat.addeditmeal;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -9,31 +11,36 @@ import dideat.mycom.com.dideat.data.MealsDataSource;
 class AddEditMealPresenter implements AddEditMealContract.Presenter {
 
     @NonNull
-    private final MealsDataSource mMealsRepository=null; // update need not null
+    private final MealsDataSource mMealsRepository;
 
     @NonNull
-    private AddEditMealContract.View mAddEditMealView;
+    private final AddEditMealContract.View mAddEditMealView;
 
     @Nullable
     private String mMealId;
 
-    public AddEditMealPresenter(@NonNull AddEditMealContract.View addEditListView) {
+    public AddEditMealPresenter(@NonNull MealsDataSource mealsRepository,
+                                @NonNull AddEditMealContract.View addEditListView) {
+        mMealsRepository = mealsRepository;
         mAddEditMealView = addEditListView;
 
         mAddEditMealView.setPresenter(this);
     }
 
     @Override
-    public void start() {
-
-    }
+    public void start() {}
 
     @Override
-    public void saveMeal(String date, String time, String place, String food, String price) {
+    public boolean saveMeal(String date, String time, String place, String food, String price) {
         if (isNewMeal()) {
-            createMeal(date, time, place, food, price);
+            if(createMeal(date, time, place, food, price)){
+                return true;
+            }else{
+                return false;
+            }
         } else {
             updateMeal(date, time, place, food, price);
+            return true;
         }
     }
 
@@ -41,13 +48,15 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
         return mMealId == null;
     }
 
-    private void createMeal(String date, String time, String place, String food, String price) {
+    private boolean createMeal(String date, String time, String place, String food, String price) {
         Meal newMeal = new Meal(date, time, place, food, price);
         if (newMeal.isEmpty()) {
             mAddEditMealView.showEmptyMealError();
+            return false;
         } else {
-            mMealsRepository.saveTask(newMeal);
+            mMealsRepository.saveMeal(newMeal);
             mAddEditMealView.showMealsList();
+            return true;
         }
 
     }

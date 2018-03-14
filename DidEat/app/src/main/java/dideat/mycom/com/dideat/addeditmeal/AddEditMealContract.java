@@ -14,6 +14,6 @@ public interface AddEditMealContract {
 
     interface Presenter extends BasePresenter {
 
-        void saveMeal(String date, String time, String place, String food, String price);
+        boolean saveMeal(String date, String time, String place, String food, String price);
     }
 }

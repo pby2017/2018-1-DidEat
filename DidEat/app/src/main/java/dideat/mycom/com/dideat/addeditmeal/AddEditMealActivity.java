@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dideat.mycom.com.dideat.R;
+import dideat.mycom.com.dideat.data.MealsRepository;
 
 public class AddEditMealActivity extends AppCompatActivity implements AddEditMealContract.View {
 
@@ -32,15 +33,14 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_meal);
 
-        mAddEditMealPresenter = new AddEditMealPresenter(AddEditMealActivity.this);
+        mAddEditMealPresenter = new AddEditMealPresenter(MealsRepository.getInstance(),
+                AddEditMealActivity.this);
 
         setupViewContent();
     }
 
     @Override
-    public void setPresenter(AddEditMealContract.Presenter presenter) {
-
-    }
+    public void setPresenter(AddEditMealContract.Presenter presenter) {}
 
     private void setupViewContent() {
         mDateEditText = (EditText) findViewById(R.id.mDateEditText);
@@ -54,13 +54,13 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAddEditMealPresenter.saveMeal(mDateEditText.getText().toString(),
+                if(mAddEditMealPresenter.saveMeal(mDateEditText.getText().toString(),
                         mTimeEditText.getText().toString(),mPlaceEditText.getText().toString(),
-                        mFoodEditText.getText().toString(),mPriceEditText.getText().toString());
-
-                Intent returnIntent = new Intent();
-                setResult(Activity.RESULT_OK, returnIntent);
-                finish();
+                        mFoodEditText.getText().toString(),mPriceEditText.getText().toString())){
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }
             }
         });
 

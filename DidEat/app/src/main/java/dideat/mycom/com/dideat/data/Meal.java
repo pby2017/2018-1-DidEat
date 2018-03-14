@@ -56,4 +56,34 @@ public final class Meal {
                 mPlace.length()!=0 && mFood.length()!=0 &&
                 mPrice.length()!=0);
     }
+
+    @NonNull
+    public String getmId() {
+        return mId;
+    }
+
+    @Nullable
+    public String getmDate() {
+        return mDate;
+    }
+
+    @Nullable
+    public String getmTime() {
+        return mTime;
+    }
+
+    @Nullable
+    public String getmPlace() {
+        return mPlace;
+    }
+
+    @Nullable
+    public String getmFood() {
+        return mFood;
+    }
+
+    @Nullable
+    public String getmPrice() {
+        return mPrice;
+    }
 }
