@@ -1,13 +1,11 @@
 package dideat.mycom.com.dideat.data;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dideat.mycom.com.dideat.addeditmeal.AddEditMealContract;
 import io.realm.Realm;
 
 public class MealsRepository implements MealsDataSource {
