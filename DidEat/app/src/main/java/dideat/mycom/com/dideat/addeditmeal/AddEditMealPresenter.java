@@ -66,6 +66,8 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
 
     }
 
-    private void updateMeal(Meal meal) {
+    private boolean updateMeal(Meal newMeal) {
+
+        return true;
     }
 }
