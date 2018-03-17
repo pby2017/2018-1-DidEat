@@ -45,7 +45,8 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     }
 
     @Override
-    public void setPresenter(AddEditMealContract.Presenter presenter) {}
+    public void setPresenter(AddEditMealContract.Presenter presenter) {
+    }
 
     private void setupViewContent() {
         mDateEditText = (EditText) findViewById(R.id.mDateEditText);
@@ -59,9 +60,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mAddEditMealPresenter.saveMeal(mDateEditText.getText().toString(),
-                        mTimeEditText.getText().toString(),mPlaceEditText.getText().toString(),
-                        mFoodEditText.getText().toString(),mPriceEditText.getText().toString())){
+                if (isSaveMeal()) {
                     Intent returnIntent = new Intent();
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
@@ -75,6 +74,20 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
                 finish();
             }
         });
+    }
+
+    public boolean isSaveMeal() {
+        if (mAddEditMealPresenter.saveMeal(newMeal())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Meal newMeal() {
+        return new Meal(mDateEditText.getText().toString(),
+                mTimeEditText.getText().toString(), mPlaceEditText.getText().toString(),
+                mFoodEditText.getText().toString(), mPriceEditText.getText().toString());
     }
 
     @Override
