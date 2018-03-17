@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import dideat.mycom.com.dideat.data.Meal;
+import dideat.mycom.com.dideat.data.MealsDataSource;
+import dideat.mycom.com.dideat.data.MealsRepository;
 import io.realm.Realm;
 
 class AddEditMealPresenter implements AddEditMealContract.Presenter {
@@ -15,7 +17,7 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
     @Nullable
     private String mMealId;
 
-    private Realm realm;
+    private Realm mRealm;
 
     public AddEditMealPresenter(@Nullable String mealId,
                                 @NonNull Context context,
