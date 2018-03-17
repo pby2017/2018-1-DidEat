@@ -11,11 +11,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dideat.mycom.com.dideat.R;
+import dideat.mycom.com.dideat.data.Meal;
 import dideat.mycom.com.dideat.data.MealsRepository;
 
 public class AddEditMealActivity extends AppCompatActivity implements AddEditMealContract.View {
 
     public static final int REQUEST_ADD_MEAL = 1;
+    private static final String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
 
     private AddEditMealPresenter mAddEditMealPresenter;
 
@@ -33,14 +35,18 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_meal);
 
-        mAddEditMealPresenter = new AddEditMealPresenter(MealsRepository.getInstance(),
+        String mealId = getIntent().getStringExtra(AddEditMealActivity.ARGUMENT_EDIT_MEAL_ID);
+
+        mAddEditMealPresenter = new AddEditMealPresenter(mealId,
+                getApplicationContext(),
                 AddEditMealActivity.this);
 
         setupViewContent();
     }
 
     @Override
-    public void setPresenter(AddEditMealContract.Presenter presenter) {}
+    public void setPresenter(AddEditMealContract.Presenter presenter) {
+    }
 
     private void setupViewContent() {
         mDateEditText = (EditText) findViewById(R.id.mDateEditText);
@@ -54,9 +60,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mAddEditMealPresenter.saveMeal(mDateEditText.getText().toString(),
-                        mTimeEditText.getText().toString(),mPlaceEditText.getText().toString(),
-                        mFoodEditText.getText().toString(),mPriceEditText.getText().toString())){
+                if (isSaveMeal()) {
                     Intent returnIntent = new Intent();
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
@@ -70,6 +74,20 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
                 finish();
             }
         });
+    }
+
+    public boolean isSaveMeal() {
+        return (mAddEditMealPresenter.saveMeal(newMeal()));
+    }
+
+    public Meal newMeal() {
+        String date = mDateEditText.getText().toString();
+        String time = mTimeEditText.getText().toString();
+        String place = mPlaceEditText.getText().toString();
+        String food = mFoodEditText.getText().toString();
+        String price = mPriceEditText.getText().toString();
+
+        return new Meal(date,time,place,food,price);
     }
 
     @Override

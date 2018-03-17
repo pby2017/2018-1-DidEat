@@ -1,46 +1,44 @@
 package dideat.mycom.com.dideat.addeditmeal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import dideat.mycom.com.dideat.data.Meal;
 import dideat.mycom.com.dideat.data.MealsDataSource;
+import dideat.mycom.com.dideat.data.MealsRepository;
 
 class AddEditMealPresenter implements AddEditMealContract.Presenter {
 
     @NonNull
-    private final MealsDataSource mMealsRepository;
+    private final AddEditMealContract.View mAddEditMealView;
 
     @NonNull
-    private final AddEditMealContract.View mAddEditMealView;
+    private final MealsDataSource mMealsRepository;
 
     @Nullable
     private String mMealId;
 
-    public AddEditMealPresenter(@NonNull MealsDataSource mealsRepository,
+    public AddEditMealPresenter(@Nullable String mealId,
+                                @NonNull Context context,
                                 @NonNull AddEditMealContract.View addEditListView) {
-        mMealsRepository = mealsRepository;
+        mMealId = mealId;
+        mMealsRepository = MealsRepository.getInstance(context);
         mAddEditMealView = addEditListView;
 
         mAddEditMealView.setPresenter(this);
     }
 
     @Override
-    public void start() {}
+    public void start() {
+    }
 
     @Override
-    public boolean saveMeal(String date, String time, String place, String food, String price) {
+    public boolean saveMeal(Meal newMeal) {
         if (isNewMeal()) {
-            if(createMeal(date, time, place, food, price)){
-                return true;
-            }else{
-                return false;
-            }
+            return (createMeal(newMeal));
         } else {
-            updateMeal(date, time, place, food, price);
-            return true;
+            return (updateMeal(newMeal));
         }
     }
 
@@ -48,8 +46,7 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
         return mMealId == null;
     }
 
-    private boolean createMeal(String date, String time, String place, String food, String price) {
-        Meal newMeal = new Meal(date, time, place, food, price);
+    private boolean createMeal(Meal newMeal) {
         if (newMeal.isEmpty()) {
             mAddEditMealView.showEmptyMealError();
             return false;
@@ -61,6 +58,8 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
 
     }
 
-    private void updateMeal(String date, String time, String place, String food, String price) {
+    private boolean updateMeal(Meal newMeal) {
+
+        return true;
     }
 }

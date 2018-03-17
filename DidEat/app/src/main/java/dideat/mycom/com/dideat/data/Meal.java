@@ -5,44 +5,40 @@ import android.support.annotation.Nullable;
 
 import java.util.UUID;
 
-public final class Meal {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-//    @PrimaryKey
+public class Meal extends RealmObject {
+
+    @PrimaryKey
     @NonNull
-//    @ColumnInfo(name = "entryid")
-    private final String mId;
+    private String mId;
 
     @Nullable
-//    @ColumnInfo(name = "date")
-    private final String mDate;
+    private String mDate;
 
     @Nullable
-//    @ColumnInfo(name = "time")
-    private final String mTime;
+    private String mTime;
 
     @Nullable
-//    @ColumnInfo(name = "place")
-    private final String mPlace;
+    private String mPlace;
 
     @Nullable
-//    @ColumnInfo(name = "food")
-    private final String mFood;
+    private String mFood;
 
     @Nullable
-//    @ColumnInfo(name = "price")
-    private final String mPrice;
+    private String mPrice;
 
-//    @ColumnInfo(name = "completed")
-    private final boolean mCompleted = false;
+    public Meal(){}
 
     public Meal(@Nullable String date, @Nullable String time,
-                @Nullable String place,@Nullable String food, @Nullable String price) {
-        this(date, time, place, food, price, UUID.randomUUID().toString(), false);
+                @Nullable String place, @Nullable String food, @Nullable String price) {
+        this(date, time, place, food, price, UUID.randomUUID().toString());
     }
 
     public Meal(@Nullable String date, @Nullable String time,
-                @Nullable String place,@Nullable String food, @Nullable String price,
-                @NonNull String id, boolean completed) {
+                @Nullable String place, @Nullable String food, @Nullable String price,
+                @NonNull String id) {
         mId = id;
         mDate = date;
         mTime = time;
@@ -52,38 +48,38 @@ public final class Meal {
     }
 
     public boolean isEmpty() {
-        return !(mDate.length()!=0 && mTime.length()!=0 &&
-                mPlace.length()!=0 && mFood.length()!=0 &&
-                mPrice.length()!=0);
+        return !(mDate.length() != 0 && mTime.length() != 0 &&
+                mPlace.length() != 0 && mFood.length() != 0 &&
+                mPrice.length() != 0);
     }
 
     @NonNull
-    public String getmId() {
+    public String getId() {
         return mId;
     }
 
     @Nullable
-    public String getmDate() {
+    public String getDate() {
         return mDate;
     }
 
     @Nullable
-    public String getmTime() {
+    public String getTime() {
         return mTime;
     }
 
     @Nullable
-    public String getmPlace() {
+    public String getPlace() {
         return mPlace;
     }
 
     @Nullable
-    public String getmFood() {
+    public String getFood() {
         return mFood;
     }
 
     @Nullable
-    public String getmPrice() {
+    public String getPrice() {
         return mPrice;
     }
 }
