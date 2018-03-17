@@ -11,12 +11,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import dideat.mycom.com.dideat.R;
+import dideat.mycom.com.dideat.data.Meal;
 import dideat.mycom.com.dideat.data.MealsRepository;
 
 public class AddEditMealActivity extends AppCompatActivity implements AddEditMealContract.View {
 
     public static final int REQUEST_ADD_MEAL = 1;
-    private static String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
+    private static final String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
 
     private AddEditMealPresenter mAddEditMealPresenter;
 
