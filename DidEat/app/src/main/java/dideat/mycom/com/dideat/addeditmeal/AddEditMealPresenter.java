@@ -35,15 +35,15 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
     }
 
     @Override
-    public boolean saveMeal(String date, String time, String place, String food, String price) {
+    public boolean saveMeal(Meal meal) {
         if (isNewMeal()) {
-            if (createMeal(date, time, place, food, price)) {
+            if (createMeal(meal)) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            updateMeal(date, time, place, food, price);
+            updateMeal(meal);
             return true;
         }
     }
@@ -52,19 +52,18 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
         return mMealId == null;
     }
 
-    private boolean createMeal(String date, String time, String place, String food, String price) {
-        Meal newMeal = new Meal(date, time, place, food, price);
-        if (newMeal.isEmpty()) {
+    private boolean createMeal(Meal meal) {
+        if (meal.isEmpty()) {
             mAddEditMealView.showEmptyMealError();
             return false;
         } else {
-            mMealsRepository.saveMeal(newMeal);
+            mMealsRepository.saveMeal(meal);
             mAddEditMealView.showMealsList();
             return true;
         }
 
     }
 
-    private void updateMeal(String date, String time, String place, String food, String price) {
+    private void updateMeal(Meal meal) {
     }
 }
