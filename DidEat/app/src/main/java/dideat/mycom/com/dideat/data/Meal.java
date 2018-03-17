@@ -29,18 +29,16 @@ public class Meal extends RealmObject {
     @Nullable
     private String mPrice;
 
-    private boolean mCompleted = false;
-
     public Meal(){}
 
     public Meal(@Nullable String date, @Nullable String time,
                 @Nullable String place, @Nullable String food, @Nullable String price) {
-        this(date, time, place, food, price, UUID.randomUUID().toString(), false);
+        this(date, time, place, food, price, UUID.randomUUID().toString());
     }
 
     public Meal(@Nullable String date, @Nullable String time,
                 @Nullable String place, @Nullable String food, @Nullable String price,
-                @NonNull String id, boolean completed) {
+                @NonNull String id) {
         mId = id;
         mDate = date;
         mTime = time;
