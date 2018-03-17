@@ -14,6 +14,9 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
     @NonNull
     private final AddEditMealContract.View mAddEditMealView;
 
+    @NonNull
+    private final MealsDataSource mMealsRepository;
+
     @Nullable
     private String mMealId;
 
@@ -23,8 +26,7 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
                                 @NonNull Context context,
                                 @NonNull AddEditMealContract.View addEditListView) {
         mMealId = mealId;
-        Realm.init(context);
-        realm = Realm.getDefaultInstance();
+        mMealsRepository = MealsRepository.getInstance(context);
         mAddEditMealView = addEditListView;
 
         mAddEditMealView.setPresenter(this);
