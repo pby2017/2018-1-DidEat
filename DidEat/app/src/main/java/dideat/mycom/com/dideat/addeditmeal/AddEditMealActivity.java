@@ -81,9 +81,13 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     }
 
     public Meal newMeal() {
-        return new Meal(mDateEditText.getText().toString(),
-                mTimeEditText.getText().toString(), mPlaceEditText.getText().toString(),
-                mFoodEditText.getText().toString(), mPriceEditText.getText().toString());
+        String date = mDateEditText.getText().toString();
+        String time = mTimeEditText.getText().toString();
+        String place = mPlaceEditText.getText().toString();
+        String food = mFoodEditText.getText().toString();
+        String price = mPriceEditText.getText().toString();
+
+        return new Meal(date,time,place,food,price);
     }
 
     @Override
