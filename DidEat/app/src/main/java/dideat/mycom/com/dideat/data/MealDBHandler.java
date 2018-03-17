@@ -43,11 +43,11 @@ public class MealDBHandler extends SQLiteOpenHelper {
 
     public void addMeal(Meal meal){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DATE, meal.getmDate());
-        values.put(COLUMN_TIME, meal.getmTime());
-        values.put(COLUMN_PLACE, meal.getmPlace());
-        values.put(COLUMN_FOOD, meal.getmFood());
-        values.put(COLUMN_PRICE, meal.getmPrice());
+        values.put(COLUMN_DATE, meal.getDate());
+        values.put(COLUMN_TIME, meal.getTime());
+        values.put(COLUMN_PLACE, meal.getPlace());
+        values.put(COLUMN_FOOD, meal.getFood());
+        values.put(COLUMN_PRICE, meal.getPrice());
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 

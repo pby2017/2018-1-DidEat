@@ -37,7 +37,7 @@ public class MealsRepository implements MealsDataSource {
         if (mCachedMeals == null) {
             mCachedMeals = new LinkedHashMap<>();
         }
-        mCachedMeals.put(meal.getmId(), meal);
+        mCachedMeals.put(meal.getId(), meal);
 
 
     }

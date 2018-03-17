@@ -54,32 +54,32 @@ public final class Meal extends RealmObject {
     }
 
     @NonNull
-    public String getmId() {
+    public String getId() {
         return mId;
     }
 
     @Nullable
-    public String getmDate() {
+    public String getDate() {
         return mDate;
     }
 
     @Nullable
-    public String getmTime() {
+    public String getTime() {
         return mTime;
     }
 
     @Nullable
-    public String getmPlace() {
+    public String getPlace() {
         return mPlace;
     }
 
     @Nullable
-    public String getmFood() {
+    public String getFood() {
         return mFood;
     }
 
     @Nullable
-    public String getmPrice() {
+    public String getPrice() {
         return mPrice;
     }
 }
