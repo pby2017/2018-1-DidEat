@@ -8,28 +8,30 @@ import java.util.UUID;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public final class Meal extends RealmObject {
+public class Meal extends RealmObject {
 
     @PrimaryKey
     @NonNull
-    private final String mId;
+    private String mId;
 
     @Nullable
-    private final String mDate;
+    private String mDate;
 
     @Nullable
-    private final String mTime;
+    private String mTime;
 
     @Nullable
-    private final String mPlace;
+    private String mPlace;
 
     @Nullable
-    private final String mFood;
+    private String mFood;
 
     @Nullable
-    private final String mPrice;
+    private String mPrice;
 
-    private final boolean mCompleted = false;
+    private boolean mCompleted = false;
+
+    public Meal(){}
 
     public Meal(@Nullable String date, @Nullable String time,
                 @Nullable String place, @Nullable String food, @Nullable String price) {
