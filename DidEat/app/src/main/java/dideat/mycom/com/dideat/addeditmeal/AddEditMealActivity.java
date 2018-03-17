@@ -77,11 +77,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     }
 
     public boolean isSaveMeal() {
-        if (mAddEditMealPresenter.saveMeal(newMeal())) {
-            return true;
-        } else {
-            return false;
-        }
+        return (mAddEditMealPresenter.saveMeal(newMeal()));
     }
 
     public Meal newMeal() {
