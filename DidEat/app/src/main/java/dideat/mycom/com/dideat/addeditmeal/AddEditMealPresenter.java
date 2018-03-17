@@ -1,17 +1,13 @@
 package dideat.mycom.com.dideat.addeditmeal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import dideat.mycom.com.dideat.data.Meal;
-import dideat.mycom.com.dideat.data.MealsDataSource;
+import io.realm.Realm;
 
 class AddEditMealPresenter implements AddEditMealContract.Presenter {
-
-    @NonNull
-    private final MealsDataSource mMealsRepository;
 
     @NonNull
     private final AddEditMealContract.View mAddEditMealView;
@@ -19,23 +15,29 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
     @Nullable
     private String mMealId;
 
-    public AddEditMealPresenter(@NonNull MealsDataSource mealsRepository,
+    private Realm realm;
+
+    public AddEditMealPresenter(@Nullable String mealId,
+                                @NonNull Context context,
                                 @NonNull AddEditMealContract.View addEditListView) {
-        mMealsRepository = mealsRepository;
+        mMealId = mealId;
+        Realm.init(context);
+        realm = Realm.getDefaultInstance();
         mAddEditMealView = addEditListView;
 
         mAddEditMealView.setPresenter(this);
     }
 
     @Override
-    public void start() {}
+    public void start() {
+    }
 
     @Override
     public boolean saveMeal(String date, String time, String place, String food, String price) {
         if (isNewMeal()) {
-            if(createMeal(date, time, place, food, price)){
+            if (createMeal(date, time, place, food, price)) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         } else {

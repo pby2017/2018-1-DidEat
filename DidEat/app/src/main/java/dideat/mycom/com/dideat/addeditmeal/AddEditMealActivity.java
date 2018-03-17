@@ -16,6 +16,7 @@ import dideat.mycom.com.dideat.data.MealsRepository;
 public class AddEditMealActivity extends AppCompatActivity implements AddEditMealContract.View {
 
     public static final int REQUEST_ADD_MEAL = 1;
+    private static String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
 
     private AddEditMealPresenter mAddEditMealPresenter;
 
@@ -33,7 +34,10 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_meal);
 
-        mAddEditMealPresenter = new AddEditMealPresenter(MealsRepository.getInstance(),
+        String mealId = getIntent().getStringExtra(AddEditMealActivity.ARGUMENT_EDIT_MEAL_ID);
+
+        mAddEditMealPresenter = new AddEditMealPresenter(mealId,
+                getApplicationContext(),
                 AddEditMealActivity.this);
 
         setupViewContent();

@@ -10,8 +10,7 @@ public class MainPresenter implements MainContract.Presenter {
     private MainContract.View mMainView;
 
     public MainPresenter(@NonNull MainContract.View mainView){
-        mMainView = mainView; // do I nedd check not null?
-
+        mMainView = mainView;
         mMainView.setPresenter(this);
     }
 
