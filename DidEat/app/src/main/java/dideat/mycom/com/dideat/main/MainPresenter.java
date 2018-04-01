@@ -12,6 +12,7 @@ public class MainPresenter implements MainContract.Presenter {
     public MainPresenter(@NonNull MainContract.View mainView){
         mMainView = mainView;
         mMainView.setPresenter(this);
+        mMealsRepository = MealsRepository.getInstance(context);
     }
 
     @Override

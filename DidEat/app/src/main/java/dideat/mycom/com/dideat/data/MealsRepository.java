@@ -8,11 +8,13 @@ import java.util.Map;
 
 import io.realm.Realm;
 
-public class MealsRepository implements MealsDataSource {
+public class MealsRepository extends Application implements MealsDataSource {
 
     private static MealsRepository INSTANCE = null;
 
     private static Map<String, Meal> mCachedMeals;
+
+    private static RealmResults<Meal> mMealsList;
 
     private static Realm mRealm;
 
@@ -26,6 +28,7 @@ public class MealsRepository implements MealsDataSource {
             INSTANCE = new MealsRepository();
             Realm.init(context);
             mRealm = Realm.getDefaultInstance();
+            loadMealsList();
         }
         return INSTANCE;
     }
@@ -37,6 +40,15 @@ public class MealsRepository implements MealsDataSource {
         }
         mCachedMeals.put(meal.getId(), meal);
 
+    public static void loadMealsList() {
+        mMealsList = mRealm.where(Meal.class)
+                .findAll();
+        Iterator<Meal> mealListCopy = mMealsList.iterator();
+        while (mealListCopy.hasNext()) {
+            Meal mealCopy = mealListCopy.next();
+            mCachedMeals.put(mealCopy.getId(), mealCopy);
+        }
+    }
 
     }
 }
