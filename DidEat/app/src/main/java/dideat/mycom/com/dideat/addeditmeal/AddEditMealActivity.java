@@ -94,8 +94,4 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     public void showEmptyMealError() {
         Toast.makeText(getApplicationContext(), getString(R.string.empty_meal_message), Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    public void showMealsList() {
-    }
 }

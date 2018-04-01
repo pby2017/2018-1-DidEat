@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private MainContract.Presenter mMainPresenter;
 
     private Button mAddButton;
-    private Button mMealButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +33,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     void setupViewContent() {
         mAddButton = (Button) findViewById(R.id.mAddButton);
-        mMealButton = (Button) findViewById(R.id.mMealButton);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAddMeal();
-            }
-        });
-
-        mMealButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMeal();
             }
         });
     }

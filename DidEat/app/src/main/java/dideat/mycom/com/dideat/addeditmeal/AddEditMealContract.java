@@ -9,8 +9,6 @@ public interface AddEditMealContract {
     interface View extends BaseView<Presenter> {
 
         void showEmptyMealError();
-
-        void showMealsList();
     }
 
     interface Presenter extends BasePresenter {
