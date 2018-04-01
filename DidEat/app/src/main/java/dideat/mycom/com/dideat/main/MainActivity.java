@@ -12,7 +12,7 @@ import dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
-    private MainPresenter mMainPresenter;
+    private MainContract.Presenter mMainPresenter;
 
     private Button mAddButton;
     private Button mMealButton;

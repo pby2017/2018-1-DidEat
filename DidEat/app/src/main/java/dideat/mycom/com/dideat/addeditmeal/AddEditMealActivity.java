@@ -19,7 +19,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     public static final int REQUEST_ADD_MEAL = 1;
     private static final String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
 
-    private AddEditMealPresenter mAddEditMealPresenter;
+    private AddEditMealContract.Presenter mAddEditMealPresenter;
 
     private EditText mDateEditText;
     private EditText mTimeEditText;
