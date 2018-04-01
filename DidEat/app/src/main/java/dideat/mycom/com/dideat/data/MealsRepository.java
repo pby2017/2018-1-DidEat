@@ -50,5 +50,8 @@ public class MealsRepository extends Application implements MealsDataSource {
         }
     }
 
+    @Override
+    public Map<String, Meal> getCachedMeals() {
+        return mCachedMeals;
     }
 }

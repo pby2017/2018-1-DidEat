@@ -23,6 +23,8 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void result(int requestCode, int resultCode) {
         if (AddEditMealActivity.REQUEST_ADD_MEAL == requestCode && Activity.RESULT_OK == resultCode) {
+            mCachedMeals = mMealsRepository.getCachedMeals();
+            mMainView.refreshRecyclerView();
             mMainView.showSuccessfullySavedMessage();
         }
     }

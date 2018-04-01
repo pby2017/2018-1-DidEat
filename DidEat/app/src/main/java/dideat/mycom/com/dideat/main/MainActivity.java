@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mMainPresenter = presenter;
     }
 
+    @Override
+    public void refreshRecyclerView() {
+        mRecyclerAdapter.notifyDataSetChanged();
     }
 
     void setupViewContent() {
