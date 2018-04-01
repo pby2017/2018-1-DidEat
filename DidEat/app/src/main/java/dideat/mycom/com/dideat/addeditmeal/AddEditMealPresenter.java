@@ -52,7 +52,6 @@ class AddEditMealPresenter implements AddEditMealContract.Presenter {
             return false;
         } else {
             mMealsRepository.saveMeal(newMeal);
-            mAddEditMealView.showMealsList();
             return true;
         }
 

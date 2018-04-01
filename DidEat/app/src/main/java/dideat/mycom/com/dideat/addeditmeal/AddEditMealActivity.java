@@ -19,7 +19,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     public static final int REQUEST_ADD_MEAL = 1;
     private static final String ARGUMENT_EDIT_MEAL_ID = "EDIT_TASK_ID";
 
-    private AddEditMealPresenter mAddEditMealPresenter;
+    private AddEditMealContract.Presenter mAddEditMealPresenter;
 
     private EditText mDateEditText;
     private EditText mTimeEditText;
@@ -37,7 +37,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
 
         String mealId = getIntent().getStringExtra(AddEditMealActivity.ARGUMENT_EDIT_MEAL_ID);
 
-        mAddEditMealPresenter = new AddEditMealPresenter(mealId,
+        new AddEditMealPresenter(mealId,
                 getApplicationContext(),
                 AddEditMealActivity.this);
 
@@ -46,6 +46,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
 
     @Override
     public void setPresenter(AddEditMealContract.Presenter presenter) {
+        mAddEditMealPresenter = presenter;
     }
 
     private void setupViewContent() {
@@ -93,9 +94,5 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
     @Override
     public void showEmptyMealError() {
         Toast.makeText(getApplicationContext(), getString(R.string.empty_meal_message), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showMealsList() {
     }
 }
