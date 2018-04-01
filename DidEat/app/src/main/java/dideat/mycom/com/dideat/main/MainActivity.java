@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         showMessage(getString(R.string.successfully_saved_meal_message));
     }
 
-    private void showMessage(String message){
+    private void showMessage(String message) {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
