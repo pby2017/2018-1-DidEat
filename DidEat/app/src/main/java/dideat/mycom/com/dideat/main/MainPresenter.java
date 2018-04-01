@@ -1,9 +1,17 @@
 package dideat.mycom.com.dideat.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+
+import java.util.Map;
 
 import dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity;
+import dideat.mycom.com.dideat.data.Meal;
+import dideat.mycom.com.dideat.data.MealsDataSource;
+import dideat.mycom.com.dideat.data.MealsRepository;
+import dideat.mycom.com.dideat.data.RecyclerAdapter;
 
 public class MainPresenter implements MainContract.Presenter {
 

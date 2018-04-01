@@ -1,12 +1,15 @@
 package dideat.mycom.com.dideat.data;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MealsRepository extends Application implements MealsDataSource {
 

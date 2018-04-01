@@ -1,5 +1,7 @@
 package dideat.mycom.com.dideat.main;
 
+import android.support.v7.widget.RecyclerView;
+
 import dideat.mycom.com.dideat.BasePresenter;
 import dideat.mycom.com.dideat.BaseView;
 
