@@ -37,7 +37,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
 
         String mealId = getIntent().getStringExtra(AddEditMealActivity.ARGUMENT_EDIT_MEAL_ID);
 
-        mAddEditMealPresenter = new AddEditMealPresenter(mealId,
+        new AddEditMealPresenter(mealId,
                 getApplicationContext(),
                 AddEditMealActivity.this);
 
@@ -46,6 +46,7 @@ public class AddEditMealActivity extends AppCompatActivity implements AddEditMea
 
     @Override
     public void setPresenter(AddEditMealContract.Presenter presenter) {
+        mAddEditMealPresenter = presenter;
     }
 
     private void setupViewContent() {

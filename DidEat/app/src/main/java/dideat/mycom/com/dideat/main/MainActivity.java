@@ -21,13 +21,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainPresenter = new MainPresenter(MainActivity.this);
-
         setupViewContent();
+
+        new MainPresenter(getApplicationContext(),
+                MainActivity.this);
     }
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
+        mMainPresenter = presenter;
+    }
 
     }
 
