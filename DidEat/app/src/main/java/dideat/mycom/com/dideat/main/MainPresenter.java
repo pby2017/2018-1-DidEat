@@ -15,12 +15,24 @@ import dideat.mycom.com.dideat.data.RecyclerAdapter;
 
 public class MainPresenter implements MainContract.Presenter {
 
+    @NonNull
+    private final MealsDataSource mMealsRepository;
+
+    private Map<String, Meal> mCachedMeals;
+
+    private RecyclerView.Adapter mRecyclerAdapter;
+
     private MainContract.View mMainView;
 
-    public MainPresenter(@NonNull MainContract.View mainView){
+    public MainPresenter(@NonNull Context context,
+                         @NonNull MainContract.View mainView) {
         mMainView = mainView;
         mMainView.setPresenter(this);
         mMealsRepository = MealsRepository.getInstance(context);
+        mCachedMeals = mMealsRepository.getCachedMeals();
+        mRecyclerAdapter = new RecyclerAdapter(mCachedMeals);
+        mMainView.setRecyclerAdapter(mRecyclerAdapter);
+        mMainView.setRecyclerView();
     }
 
     @Override

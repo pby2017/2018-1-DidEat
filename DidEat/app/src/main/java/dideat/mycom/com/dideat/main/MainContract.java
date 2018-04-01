@@ -8,7 +8,13 @@ import dideat.mycom.com.dideat.BaseView;
 public interface MainContract {
 
     interface View extends BaseView<Presenter> {
+        void refreshRecyclerView();
+
         void showSuccessfullySavedMessage();
+
+        void setRecyclerAdapter(RecyclerView.Adapter recyclerAdapter);
+
+        void setRecyclerView();
     }
 
     interface Presenter extends BasePresenter {

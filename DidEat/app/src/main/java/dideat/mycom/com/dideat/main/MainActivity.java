@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private MainContract.Presenter mMainPresenter;
 
     private Button mAddButton;
+    private RecyclerView mShowRcylView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,25 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void setRecyclerAdapter(RecyclerView.Adapter recyclerAdapter) {
+        mRecyclerAdapter = recyclerAdapter;
+    }
+
+    @Override
+    public void setRecyclerView() {
+        mLayoutManager = new LinearLayoutManager(this);
+        mShowRcylView.setLayoutManager(mLayoutManager);
+        mShowRcylView.setAdapter(mRecyclerAdapter);
+    }
+
+    @Override
     public void refreshRecyclerView() {
         mRecyclerAdapter.notifyDataSetChanged();
     }
 
-    void setupViewContent() {
+    public void setupViewContent() {
         mAddButton = (Button) findViewById(R.id.mAddButton);
+        mShowRcylView = (RecyclerView) findViewById(R.id.mShowRcylView);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
