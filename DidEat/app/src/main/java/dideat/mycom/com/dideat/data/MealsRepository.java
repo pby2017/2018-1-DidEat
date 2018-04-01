@@ -42,6 +42,10 @@ public class MealsRepository extends Application implements MealsDataSource {
             mCachedMeals = new LinkedHashMap<>();
         }
         mCachedMeals.put(meal.getId(), meal);
+        mRealm.beginTransaction();
+        mRealm.copyToRealm(meal);
+        mRealm.commitTransaction();
+    }
 
     public static void loadMealsList() {
         mMealsList = mRealm.where(Meal.class)
