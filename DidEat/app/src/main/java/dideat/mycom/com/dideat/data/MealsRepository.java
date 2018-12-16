@@ -1,30 +1,37 @@
 package dideat.mycom.com.dideat.data;
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dideat.mycom.com.dideat.addeditmeal.AddEditMealContract;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
-public class MealsRepository implements MealsDataSource {
+public class MealsRepository extends Application implements MealsDataSource {
 
     private static MealsRepository INSTANCE = null;
 
-    private MealDBHandler dbHandler;
+    private static Map<String, Meal> mCachedMeals;
 
-    Map<String, Meal> mCachedMeals;
+    private static RealmResults<Meal> mMealsList;
+
+    private static Realm mRealm;
 
     private MealsRepository() {
+
         mCachedMeals = new LinkedHashMap<>();
-        dbHandler = new MealDBHandler(null, null, null, 1);
     }
 
-    public static MealsRepository getInstance() {
+    public static MealsRepository getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = new MealsRepository();
+            Realm.init(context);
+            mRealm = Realm.getDefaultInstance();
+            loadMealsList();
         }
         return INSTANCE;
     }
@@ -34,8 +41,24 @@ public class MealsRepository implements MealsDataSource {
         if (mCachedMeals == null) {
             mCachedMeals = new LinkedHashMap<>();
         }
-        mCachedMeals.put(meal.getmId(), meal);
+        mCachedMeals.put(meal.getId(), meal);
+        mRealm.beginTransaction();
+        mRealm.copyToRealm(meal);
+        mRealm.commitTransaction();
+    }
 
-        dbHandler.addMeal(meal);
+    public static void loadMealsList() {
+        mMealsList = mRealm.where(Meal.class)
+                .findAll();
+        Iterator<Meal> mealListCopy = mMealsList.iterator();
+        while (mealListCopy.hasNext()) {
+            Meal mealCopy = mealListCopy.next();
+            mCachedMeals.put(mealCopy.getId(), mealCopy);
+        }
+    }
+
+    @Override
+    public Map<String, Meal> getCachedMeals() {
+        return mCachedMeals;
     }
 }

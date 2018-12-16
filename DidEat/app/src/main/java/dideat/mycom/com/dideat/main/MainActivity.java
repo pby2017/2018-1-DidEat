@@ -3,6 +3,8 @@ package dideat.mycom.com.dideat.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,41 +14,54 @@ import dideat.mycom.com.dideat.addeditmeal.AddEditMealActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
-    private MainPresenter mMainPresenter;
+    private MainContract.Presenter mMainPresenter;
 
     private Button mAddButton;
-    private Button mMealButton;
+    private RecyclerView mShowRcylView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainPresenter = new MainPresenter(MainActivity.this);
-
         setupViewContent();
+
+        new MainPresenter(getApplicationContext(),
+                MainActivity.this);
     }
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
-
+        mMainPresenter = presenter;
     }
 
-    void setupViewContent() {
+    @Override
+    public void setRecyclerAdapter(RecyclerView.Adapter recyclerAdapter) {
+        mRecyclerAdapter = recyclerAdapter;
+    }
+
+    @Override
+    public void setRecyclerView() {
+        mLayoutManager = new LinearLayoutManager(this);
+        mShowRcylView.setLayoutManager(mLayoutManager);
+        mShowRcylView.setAdapter(mRecyclerAdapter);
+    }
+
+    @Override
+    public void refreshRecyclerView() {
+        mRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    public void setupViewContent() {
         mAddButton = (Button) findViewById(R.id.mAddButton);
-        mMealButton = (Button) findViewById(R.id.mMealButton);
+        mShowRcylView = (RecyclerView) findViewById(R.id.mShowRcylView);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAddMeal();
-            }
-        });
-
-        mMealButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMeal();
             }
         });
     }
@@ -70,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         showMessage(getString(R.string.successfully_saved_meal_message));
     }
 
-    private void showMessage(String message){
+    private void showMessage(String message) {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
